@@ -32,7 +32,7 @@
         <ion-item>
             <ion-button slot='start' shape="round"  color="danger" fill="outline">{{today | date: 'short'}}</ion-button>  
             <ion-label position="stacked">BUỔI: </ion-label> 
-            <!-- <ion-datetime display-format="M"  [(ngModel)]="Subject.buoi" ></ion-datetime> -->
+            <ion-datetime display-format="M"  [(ngModel)]="class[0].buoi" ></ion-datetime>
         </ion-item>
     
     <ion-card  *ngFor="let item of Students">
@@ -64,7 +64,7 @@
       <!-- {{ item.time | date: 'short'}} -->
    </ion-card>
    <!-- <ion-item > -->
-      <ion-button (click)="save();" shape="round" color="primary" expand="full"
+      <ion-button (click)="btn_Save()" shape="round" color="primary" expand="full"
       full="outline"
       >Save</ion-button>
       <ion-button (click)="goBack()" shape="round" color="primary"  expand="full"

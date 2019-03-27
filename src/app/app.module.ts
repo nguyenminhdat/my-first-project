@@ -16,6 +16,8 @@ import { environment } from "../environments/environment";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import *as firebase from "firebase";
 
+import { AngularFireAuth } from "angularfire2/auth";
+
 
 @NgModule({
   declarations: [AppComponent],

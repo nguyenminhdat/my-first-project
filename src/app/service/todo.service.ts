@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection} from "angularfire2/firest
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { result } from './todo.service';
+import { defineBase } from '@angular/core/src/render3';
 
 
 export interface subject{
@@ -40,8 +41,8 @@ export interface result {
   _status: boolean,
   _n_co: number,
   _n_vang: number,
-  _note: string,
   _waring: string,
+  _note: string,
 
 }
 
@@ -59,7 +60,8 @@ export class TodoService {
   private results: Observable<result[]>;
 
 
-  constructor(db: AngularFirestore) {
+  constructor(db: AngularFirestore
+   ) {
     //get Subject 
     this.subjectCollection = db.collection<subject>('subjects');
     this.subjects = this.subjectCollection.snapshotChanges().pipe(
@@ -96,8 +98,12 @@ export class TodoService {
     );
 
   }
+  
 
 // Subject
+  // insert(arr){
+    
+  // }
 getLop(){
  return this.subjects;}
 getLopbyId(id){
@@ -133,5 +139,4 @@ getResult(){
   return this.resultCollection.add(Result);}
  delResult(id){
   return  this.resultCollection.doc(id).delete();}
-
 }

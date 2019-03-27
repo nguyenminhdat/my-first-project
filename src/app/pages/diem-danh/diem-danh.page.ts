@@ -29,12 +29,12 @@ export class DiemDanhPage implements OnInit {
     soluong: null,
     buoi: null
   };
-  arr=[];
+  kq=[];
   Results : result[]=[];
 
 
   subjectId = null;
-
+  edt_buoi:string="";
   constructor(
     public alertController: AlertController,
     public route: ActivatedRoute,
@@ -73,57 +73,64 @@ export class DiemDanhPage implements OnInit {
   // _n_vang: number,
   // _note: string,
   // _waring: string,
-
-    let Objecttam;
-    this.todoService.getStudent().subscribe(res => {
-      // this.Students = res;
-      console.log(res);
-      res.forEach(e => {
-        if (e.ma_lop === _ma_lop) {
-          this.Students.push(e);
-           Objecttam={
-            _time: 0,
-            _ten_lop: this.class[0].ten_lop,
-            _ma_lop: _ma_lop,
-            _time_start: Number(this.class[0].time_start),
-            _time_end: Number(this.class[0].time_end),
-            _so_luong: Number(this.class[0].soluong),
-            _buoi: Number(this.class[0].buoi),
-            _name: e.name,
-            _mssv: Number(e.mssv),
-            _status: e.status,
-            _n_co:Number(e.n_co),
-            _n_vang: Number(e.n_vang),
-            _note: e.note,
-            _waring: e.waring,
-           }
-          //this.Results=e;
-          console.log(Objecttam)
-         }
-      });
-    });
+  
+  let _ma_lop = this.route.snapshot.params["id"];
+  console.log(_ma_lop);
+  this.Ma_lop = _ma_lop;
+  this.subjectId = _ma_lop;
+  if (this.subjectId) {
+    this.loadSubject();
+  } 
 
     this.todoService.getLop().subscribe(res => {
       console.log(res);
+      let Objecttam;
       res.forEach(e => {
         if (e.ma_lop === _ma_lop){
            this.class.push(e);
+           console.log(this.class)
 
+           this.todoService.getStudent().subscribe(res => {
+            // console.log(res);
+             res.forEach(e => {
+              if (e.ma_lop === this.Ma_lop) {
+                this.Students.push(e);
+                console.log(e)
+                 Objecttam={
+                  _time: this.today,
+                  _ten_lop: this.class[0].ten_lop,
+                  _ma_lop: this.Ma_lop,
+                  _time_start: Number(this.class[0].time_start),
+                  _time_end: Number(this.class[0].time_end),
+                  _so_luong: Number(this.class[0].soluong),
+                  _buoi: Number(this.class[0].buoi),
+                  _name: e.name,
+                  _mssv: Number(e.mssv),
+                  _status: e.status,
+                  _n_co:Number(e.n_co),
+                  _n_vang: Number(e.n_vang),
+                  _note: e.note,
+                  _waring: e.waring,
+                 }
+                 this.kq.push(Objecttam);
+               }
+             });
+             
+          });
+          
         }
     
       });
     });
 
-    let _ma_lop = this.route.snapshot.params["id"];
-    console.log(_ma_lop);
-    this.Ma_lop = _ma_lop;
-    this.subjectId = _ma_lop;
-    if (this.subjectId) {
-      this.loadSubject();
-    } 
 
   }
-
+  btn_Save(){
+    // this.kq.forEach(e=>{
+    //   this.todoService.addResult(e)
+    // })
+    console.log(this.edt_buoi)   
+  }
   async loadSubject() {
     const loading = await this.loadingController.create({
       // content: 'Loading...'
@@ -155,8 +162,6 @@ export class DiemDanhPage implements OnInit {
   
     //   });
     // }
-
- 
 
   goBack() {
     this.navCtrl.navigateBack("/list-class");
