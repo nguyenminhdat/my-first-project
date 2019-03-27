@@ -1,0 +1,7 @@
+{
+  "name": "Diem-Danh",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

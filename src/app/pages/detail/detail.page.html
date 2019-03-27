@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <div>
+      <ion-title class="tle" text-center>
+       Thêm Lớp
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list lines="full">
+    <ion-item>
+        <ion-label position="stacked">Tên Lớp</ion-label>
+      <ion-input
+        required
+        type="text"
+        placeholder="Tên Lớp"
+        [(ngModel)]="Subject.ten_lop"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Mã Lớp</ion-label>
+        <ion-input
+          required
+          type="text"
+          placeholder="Mã Lớp"
+          [(ngModel)]="Subject.ma_lop"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Ngày bắt đầu</ion-label>
+              <ion-datetime display-format="M DD, YYYY" [(ngModel)]="Subject.time_start"></ion-datetime>
+        </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Ngày kết thúc</ion-label>
+        <ion-datetime display-format="M DD, YYYY " [(ngModel)]="Subject.time_end"></ion-datetime>
+    </ion-item>
+    <!-- <ion-item></ion-item> -->
+  </ion-list>
+  
+
+      <ion-button shape="round" expand="full" (click)="saveSubject()">Save</ion-button>
+      <ion-button shape="round" expand="full" (click)="Cancel()">Cancel</ion-button>
+</ion-content>

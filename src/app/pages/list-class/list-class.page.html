@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar color="danger">
+      <div>
+          <ion-button (click)="goBack()" round color="dank" fill>
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+            <ion-title class="tle" text-center>
+              Danh Sách Lớp
+            </ion-title>
+      </div>   
+    </ion-toolbar>
+  </ion-header>
+  
+  <!-- content -->
+  <ion-content>
+    
+      <ion-searchbar value=" "></ion-searchbar>
+  
+  
+      <ion-list>
+        <ng-container *ngIf="!Subjects || Subjects.length == 0">
+          <div *ngFor="let n of [0,1,2]" padding>
+            <ion-skeleton-text></ion-skeleton-text>
+            <p>
+              <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+            </p>
+          </div>
+        </ng-container>
+   
+  
+  
+        <ion-card  *ngFor="let item of Subjects">
+          <ion-item-sliding>
+              <ion-item  [href]="'/list-students/' + item.ma_lop " routerDirection="forward" lines="inset">
+                      <ion-avatar item-start style="margin-right: 1em;">
+                        <img src="../../../assets/img/avt.png">
+                      </ion-avatar>
+                      <!-- <h2> {{ item.ten_lop }} - {{item.ma_lop}}</h2>           -->
+                  <ion-label class="tle">{{ item.ten_lop }} - {{item.ma_lop}}</ion-label>
+                </ion-item>
+                  <ion-item lines="inset">
+                      <ion-button fill="outline"  [href]="'/diem-danh/' + item.ma_lop " routerDirection="forward" slot="end">Check</ion-button>
+                      <ion-button fill="outline" [href]="'/list-students/' + item.ma_lop " routerDirection="forward" slot="end">View</ion-button>
+                </ion-item>
+               
+                <ion-item-options side="end"  color="danger">
+                    <ion-item-option color="warning"  [routerLink]="['/detail', item.id]"> Sửa <ion-icon name="cog"></ion-icon></ion-item-option>
+                    <ion-item-option color="danger" (click)="removeLop(item)">Xóa</ion-item-option>
+                </ion-item-options>            
+                <ion-card-content style="text-align: left">
+                  Tổng Sinh Viên: {{item.ma_lop.length}} <br><p>-------------------------------------------------------------</p>
+                  Thời gian bắt đầu: {{item.time_start}} <br> 
+                  Thời gian kết thúc: {{item.time_end}} <br>
+                </ion-card-content>
+                <ion-card-content style="text-align: left">
+                    <!-- {{ item.time | date: 'short'}} -->
+                  </ion-card-content>
+          </ion-item-sliding>       
+        </ion-card>
+  
+  
+  
+      </ion-list>
+  
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/detail" routerDirection="forward">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+  
+  </ion-content>
+  

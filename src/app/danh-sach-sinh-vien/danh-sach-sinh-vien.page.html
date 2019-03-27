@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>
+      Danh Sách
+    </ion-title>
+    <ion-button (click)="goBack()" round color="dank" fill>
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button
+    (click)="addSinhVien()"
+    shape="round"
+    color="primary"
+    expand="full"
+    fill="outline"
+    >Add Sinh Viên</ion-button
+  >
+  <ion-row>
+    <ion-col size="4">
+      MSSV
+    </ion-col>
+    <ion-col size="4">
+      Họ Và Tên
+    </ion-col>
+    <ion-col> </ion-col>
+    <ion-col size="3"> {{ date }} </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let i of data">
+    <ion-col size="4">
+      {{ i.mssv }}
+    </ion-col>
+    <ion-col size="4">
+      {{ i.name }}
+    </ion-col>
+    <ion-col> </ion-col>
+    <ion-col size="3">
+      <ion-toggle
+        name="status"
+        color="danger"
+        [(ngModel)]="i.status"
+        checked="{{ i.status }}"
+      ></ion-toggle>
+    </ion-col>
+  </ion-row>a
+
+  <ion-button
+    (click)="presentModal()"
+    shape="round"
+    color="primary"
+    expand="full"
+    fill="outline"
+    >Kết Thúc</ion-button
+  >
+
+</ion-content>

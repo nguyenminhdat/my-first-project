@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar color="danger">
+      <div>
+          <ion-button (click)="goBack()" round color="dank" fill>
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+            <ion-title class="tle" text-center>
+             List Sinh Viên
+            </ion-title>
+      </div>   
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <div *ngFor="let item of class" >
+      <h4>
+          Lớp: {{item.ten_lop}} - {{Ma_lop}}
+        </h4>      
+  </div>
+  <ion-list>
+    <ng-container *ngIf="!Students || length == 0">
+      <div *ngFor="let n of [0, 1, 2]" padding>
+        <ion-skeleton-text></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+        </p>
+      </div>
+    </ng-container>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/sinvien-detail" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <ion-card  *ngFor="let item of Students">
+      <ion-item-sliding>
+          <ion-item  lines="inset">
+      <ion-icon name="school" slot="start"></ion-icon>
+      <ion-label><h3>{{ item.name }}</h3></ion-label>
+    </ion-item>
+    <ion-item-options side="end"  color="danger">
+        <ion-item-option color="warning"  [routerLink]="['/sinvien-detail', item.id]"> Sửa <ion-icon name="cog"></ion-icon></ion-item-option>
+        <ion-item-option color="danger" (click)="removeStudent(item)">Xóa</ion-item-option>
+      </ion-item-options>
+      <ion-item lines="inset">
+          <ion-button slot="end"  fill="outline" [routerLink]="['/view-student', item.id]" slot="end">Profile</ion-button>
+      </ion-item>
+    <ion-card-content>
+      MSSV: 
+      {{ item.mssv}}<br>
+      Note: {{item.note}}
+    </ion-card-content>
+    <ion-card-content>
+        Số buổi có: 
+        {{ item.n_co}} - 
+        Số buổi vắng: 
+        {{ item.n_vang }}
+      </ion-card-content>
+    </ion-item-sliding>       
+    <!-- {{ item.time | date: 'short'}} -->
+ </ion-card>
+
+
+</ion-content>

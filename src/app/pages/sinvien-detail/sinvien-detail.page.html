@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-toolbar color="danger">
+      <div>
+          <ion-button (click)="goBack()" round color="dank" fill>
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+            <ion-title class="tle" text-center>
+              Thêm Sinh Viên
+            </ion-title>
+      </div>   
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-list lines="full">
+    <ion-item>
+        <ion-label position="stacked">Tên Sinh Viên</ion-label>
+      <ion-input
+        required
+        type="text"
+        placeholder="Tên Sinh Viên"
+        [(ngModel)]="Student.name"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">MSSV</ion-label>
+      <ion-input
+        required
+        type="text"
+        placeholder="MSSV"
+        [(ngModel)]="Student.mssv"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Mã Môn</ion-label>
+        <ion-input
+          required
+          type="text"
+          placeholder="Mã_Môn"
+          [(ngModel)]="Student.ma_lop"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Ghi chú</ion-label>
+          <ion-input
+            required
+            type="text"
+            placeholder="Ghi chú"
+            [(ngModel)]="Student.note"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Số Buối Có</ion-label>
+            <ion-input
+              required
+              type="text"
+              placeholder="Số Ngày Có"
+              [(ngModel)]="Student.n_co"
+            ></ion-input>
+          </ion-item>
+      <ion-item>
+          <ion-label position="stacked">Số Buối Đã Vắng</ion-label>
+          <ion-input
+            required
+            type="text"
+            placeholder="Số Ngày Vắng"
+            [(ngModel)]="Student.n_vang"
+          ></ion-input>
+        </ion-item>
+        
+    <!-- <ion-item></ion-item> -->
+  </ion-list>
+
+  <ion-button shape="round" expand="full" (click)="saveStudent()"
+    >Save</ion-button>
+  <ion-button shape="round" expand="full" (click)="Cancel()">Cancel</ion-button>
+</ion-content>

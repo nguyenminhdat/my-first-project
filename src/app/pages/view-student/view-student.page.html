@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar color="danger">
+      <div>
+          <ion-button (click)="goBack()" round color="dank" fill>
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+            <ion-title class="tle" text-center>
+              Profile SV
+            </ion-title>
+      </div>   
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+
+    <ion-card>
+        <ion-item>
+          <ion-avatar item-start style="margin-right: 1em;">
+            <img src="../../../assets/img/avt.png">
+          </ion-avatar>
+          <h2>  {{Student.name}}</h2>          
+        </ion-item>
+        <ion-card-content>
+           <h5 style="color: red">MSSV: {{Student.mssv}} - 
+              Số buổi vắng: 
+              {{ Student.n_vang }}</h5>
+        </ion-card-content>
+      
+        <img src="../../../assets/img/detail.jpg">
+      
+        <ion-card-content>
+            <ion-item>
+                <ion-label position="stacked">Ghi chú</ion-label>
+                <ion-textarea required [(ngModel)]="Student.note" rows="5"></ion-textarea>
+              </ion-item>
+        </ion-card-content>
+      
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear>
+              <ion-icon name='mail-unread'></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              
+            </button>
+          </ion-col>
+          <ion-col align-self-center text-center>
+            <ion-note>
+                {{Student.ma_mon}}
+            </ion-note>
+          </ion-col>
+        </ion-row>
+
+        
+      <ion-button shape="round" expand="full" (click)="saveStudent()"
+      >Save</ion-button>
+      
+      </ion-card>
+
+    
+
+</ion-content>
